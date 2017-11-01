@@ -12,6 +12,7 @@ go_library(
     name = "go_default_library",
     srcs = ["day1.go"],
     deps = ["//2015/util:go_default_library"],
+    data = ["input.txt"],
     importpath = "github.com/example/project/2015/day1",
     visibility = ["//visibility:private"],
 )
