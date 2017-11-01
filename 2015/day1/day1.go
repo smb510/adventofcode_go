@@ -6,6 +6,6 @@ import (
 )
 
 func main() {
-	_, err := ioutil.ReadFile("./input.txt")
+	_, err := ioutil.ReadFile("input.txt")
 	util.CheckError(err)
 }
