@@ -1,6 +1,4 @@
-package main
-
-import (
+import(
 "os"
 "io"
 "bufio"
@@ -10,7 +8,7 @@ import (
 )
 
 func main() {
-	var f io.Reader
+var f io.Reader
 	var err error
 	f, err = os.Open("2015/day1/input.txt")
 	defer f.Close()
