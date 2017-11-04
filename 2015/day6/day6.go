@@ -1,21 +1,83 @@
-import(
-"os"
-"io"
-"bufio"
-"fmt"
+package main
 
-"adventofcode/2015/util"
+import (
+	"bufio"
+	"fmt"
+	"io"
+	"os"
+	"regexp"
+	"strconv"
+	"strings"
+
+	"adventofcode/2015/util"
 )
 
+var lights = [1000][1000]int{}
+
 func main() {
-var f io.Reader
+	var f io.Reader
 	var err error
-	f, err = os.Open("2015/day1/input.txt")
-	defer f.Close()
+	f, err = os.Open("2015/day6/input.txt")
 	util.CheckError(err)
+	x := 0
 
 	s := bufio.NewScanner(f)
 	for s.Scan() {
-		fmt.Println(s.Text())
+		x++
+		parse(s.Text())
+	}
+	fmt.Printf("Sum: %d\n", sum(lights))
+}
+
+func sum(arr [1000][1000]int) int {
+	res := 0
+	for _, x := range arr {
+		for _, y := range x {
+			res += y
+		}
+	}
+	return res
+}
+
+func parse(line string) {
+	startX, startY, endX, endY := getCorners(line)
+	if strings.HasPrefix(line, "turn on") {
+		flood(startX, startY, endX, endY, 1)
+	} else if strings.HasPrefix(line, "turn off") {
+		flood(startX, startY, endX, endY, -1)
+	} else if strings.HasPrefix(line, "toggle") {
+		flood(startX, startY, endX, endY, 2)
+	}
+}
+
+func getInt(x string) int {
+	y, _ := strconv.Atoi(x)
+	return y
+}
+
+func getCorners(line string) (int, int, int, int) {
+	re, _ := regexp.Compile("\\d+")
+	c := re.FindAllString(line, -1)
+	return getInt(c[0]), getInt(c[1]), getInt(c[2]), getInt(c[3])
+}
+
+func flood(startX int, startY int, endX int, endY int, val int) {
+	for x := startX; x <= endX; x++ {
+		for y := startY; y <= endY; y++ {
+			lights[y][x] += val
+			if lights[y][x] < 0 {
+				lights[y][x] = 0
+			}
+		}
+	}
+
+}
+
+func toggle(startX int, startY int, endX int, endY int) {
+	for x := startX; x <= endX; x++ {
+		for y := startY; y <= endY; y++ {
+			lights[y][x] += 2
+			
+		}
 	}
 }

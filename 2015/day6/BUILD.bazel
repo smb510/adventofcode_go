@@ -1,0 +1,19 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["day6.go"],
+    deps = [
+    	"//2015/util:go_default_library"
+    ],
+    data = ["input.txt"],
+    importpath = "github.com/example/project/2015/day6",
+    visibility = ["//visibility:private"],
+)
+
+go_binary(
+    name = "day6",
+    importpath = "github.com/example/project/2015/day6",
+    library = ":go_default_library",
+    visibility = ["//visibility:public"],
+)
