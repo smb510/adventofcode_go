@@ -19,12 +19,13 @@ func main() {
 	var err error
 	f, err = os.Open("2015/day6/input.txt")
 	util.CheckError(err)
+	x := 0
 
 	s := bufio.NewScanner(f)
 	for s.Scan() {
+		x++
 		parse(s.Text())
 	}
-	fmt.Println(lights)
 	fmt.Printf("Sum: %d\n", sum(lights))
 }
 
@@ -43,9 +44,9 @@ func parse(line string) {
 	if strings.HasPrefix(line, "turn on") {
 		flood(startX, startY, endX, endY, 1)
 	} else if strings.HasPrefix(line, "turn off") {
-		flood(startX, startY, endX, endY, 1)
+		flood(startX, startY, endX, endY, -1)
 	} else if strings.HasPrefix(line, "toggle") {
-		toggle(startX, startY, endX, endY)
+		flood(startX, startY, endX, endY, 2)
 	}
 }
 
@@ -63,7 +64,10 @@ func getCorners(line string) (int, int, int, int) {
 func flood(startX int, startY int, endX int, endY int, val int) {
 	for x := startX; x <= endX; x++ {
 		for y := startY; y <= endY; y++ {
-			lights[y][x] = val
+			lights[y][x] += val
+			if lights[y][x] < 0 {
+				lights[y][x] = 0
+			}
 		}
 	}
 
@@ -72,12 +76,8 @@ func flood(startX int, startY int, endX int, endY int, val int) {
 func toggle(startX int, startY int, endX int, endY int) {
 	for x := startX; x <= endX; x++ {
 		for y := startY; y <= endY; y++ {
-			cur := lights[y][x]
-			if cur == 0 {
-				lights[y][x] = 1
-			} else {
-				lights[y][x] = 0
-			}
+			lights[y][x] += 2
+			
 		}
 	}
 }
