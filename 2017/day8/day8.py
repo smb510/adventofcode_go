@@ -1,3 +1,5 @@
+import os
+
 comparators = {
 	"==": (lambda a, b: a == b),
 	"!=": (lambda a, b: a != b),
@@ -7,7 +9,8 @@ comparators = {
 	">=": (lambda a, b: a >= b)}
 
 def main():
-	with open("day8.txt", "r") as f:
+	ws = os.path.dirname(__file__)
+    	with open(os.path.join(ws, "day8.txt"), 'r') as f:å
 		max_val = 0
 		lines = list(f)
 		parsed_lines = [parse_line(line) for line in lines]
