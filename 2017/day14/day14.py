@@ -5,12 +5,14 @@ def main():
     print "Part 1 ", sum(counts)
     print "Part 2 ", calculate_components(hashes)
 
+
 def calculate_components(hashes):
     sum = 0
     for i in range(len(hashes)):
         for j in range(len(hashes[0])):
             sum += flood_fill(hashes, i, j)
     return sum
+
 
 def flood_fill(hashes, row, col):
     left = None if col == 0 else col - 1
@@ -29,9 +31,6 @@ def flood_fill(hashes, row, col):
             flood_fill(hashes, down, col)
         return 1
     return 0
-
-
-
 
 
 def calculate_dense_hash(str_):
@@ -61,7 +60,7 @@ def calculate_dense_hash(str_):
         sparse = values[16 * x:16 * x + 16]
         dh = reduce(lambda a, b: a ^ b, sparse)
         dense_hash.append(dh)
-    val =  ''.join(["{0:08b}".format(x) for x in dense_hash])
+    val = ''.join(["{0:08b}".format(x) for x in dense_hash])
     val = [int(x) for x in val]
     return val
 
