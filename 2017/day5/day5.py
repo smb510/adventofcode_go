@@ -11,7 +11,7 @@ def main():
             pointer = visit(pointer, lines)
             counter += 1
 
-    print counter
+    print(counter)
 
 
 def visit(pointer, lines):

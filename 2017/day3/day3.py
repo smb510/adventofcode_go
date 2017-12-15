@@ -4,7 +4,7 @@ def main():
     grid[5][5] = 1
     spiral(9, 9, grid)
     for line in grid:
-        print line
+        print(line)
 
 
 def get_number_at(x, y, grid):
@@ -16,7 +16,7 @@ def set_number_at(x, y, grid, val):
     middle = 5
     grid[middle + x][middle + y] = val
     if val > 277678:
-        print "Aha!", val
+        print("Aha!", val)
 
 
 def sum_surrounding(x, y, grid):

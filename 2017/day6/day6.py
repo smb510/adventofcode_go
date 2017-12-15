@@ -6,10 +6,9 @@ def main():
 	while block_str not in configs:	
 		configs[block_str] = i
 		blocks = redistribute(blocks)
-		print blocks
 		block_str = str(blocks)
 		i += 1
-	print configs[block_str], i
+	print(configs[block_str], i)
 
 
 

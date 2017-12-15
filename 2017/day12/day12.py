@@ -17,7 +17,7 @@ def main():
 
     components = 0
     while len(pipes) > 0:
-        next_ = pipes.keys()[0]
+        next_ = [x for x in pipes.keys()][0]
         queue.append(next_)
         component.add(next_)
         while len(queue) > 0:
@@ -26,7 +26,7 @@ def main():
             neighbors = filter(lambda x: x not in component, pipes[val])
             queue.extend(neighbors)
         components += 1
-        print components
+        print(components)
         for x in component:
             if x in pipes:
                 del pipes[x]

@@ -34,7 +34,7 @@ def build_parent_graph(lines):
             parent = parents[0]
             while parent in graph:
                 parent = graph[parent][0]
-            print parent # root node
+            print(parent) # root node
 
 def build_child_graph(lines):
     graph = {}
@@ -45,8 +45,8 @@ def build_child_graph(lines):
         weights[node[0]] = node[1]
         if len(sides) > 1:
             graph[node[0]] = [x.strip() for x in sides[1].strip().split(",")]
-    print weights["apjxafk"]
-    print graph["apjxafk"]
+    print(weights["apjxafk"])
+    print(graph["apjxafk"])
     for child in graph["apjxafk"]:
         get_subtree_weight(graph, weights, child)
 
@@ -61,10 +61,10 @@ def get_subtree_weight(graph, weights, node):
             if val in graph:
                 queue.extend(graph[val])
             else:
-                print "leaf: ", val, weights[val]
-        print weight
+                print("leaf: ", val, weights[val])
+        print(weight)
     else:
-        print "no child for ", node, weights[node]
+        print("no child for ", node, weights[node])
 
 def get_node_and_weight(node):
     regex = re.compile("(\w+) \((\d+)\)")

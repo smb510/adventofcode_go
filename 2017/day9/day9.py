@@ -35,8 +35,8 @@ def main():
                 if in_garbage:
                     garbage_count += 1
             i += 1
-    print "Part 1:", score
-    print "Part 2:", garbage_count
+    print("Part 1:", score)
+    print("Part 2:", garbage_count)
 
 if __name__ == '__main__':
     main()

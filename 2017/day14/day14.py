@@ -1,9 +1,11 @@
+from functools import reduce
+
 def main():
     strings = ["ljoxqyyw-" + str(x) for x in range(128)]
     hashes = [calculate_dense_hash(x) for x in strings]
-    counts = [len(filter(lambda y: y == 1, x)) for x in hashes]
-    print "Part 1 ", sum(counts)
-    print "Part 2 ", calculate_components(hashes)
+    counts = [len([y for y in x if y == 1]) for x in hashes]
+    print("Part 1 ", sum(counts))
+    print("Part 2 ", calculate_components(hashes))
 
 
 def calculate_components(hashes):
@@ -35,13 +37,13 @@ def flood_fill(hashes, row, col):
 
 def calculate_dense_hash(str_):
     twists = [ord(x) for x in str_] + [17, 31, 73, 47, 23]
-    values = range(256)
+    values = list(range(256))
     current_position = 0
     skip_size = 0
-    for x in xrange(64):
+    for x in range(64):
         for twist in twists:
             end = current_position + twist
-            end_segment = values[current_position:min(end, len(values))]
+            end_segment = list(values[current_position:min(end, len(values))])
             if end > len(values):
                 beginning_segment = values[0:end - len(values)]
             else:
@@ -56,7 +58,7 @@ def calculate_dense_hash(str_):
             current_position = current_position % len(values)
             skip_size += 1
     dense_hash = []
-    for x in xrange(16):
+    for x in range(16):
         sparse = values[16 * x:16 * x + 16]
         dh = reduce(lambda a, b: a ^ b, sparse)
         dense_hash.append(dh)

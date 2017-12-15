@@ -28,13 +28,11 @@ def main():
         y -= 1
         z += 1
       distances.append(distance(x,y,z))
-  print max(distances)
-
-
-  print distance(x,y,z)
+  print(max(distances))
+  print(distance(x,y,z))
 
 def distance(x, y, z):
-  return (abs(x) + abs(y) + abs(z)) / 2
+  return (abs(x) + abs(y) + abs(z)) // 2
 
 if __name__ == '__main__':
   main()

@@ -17,7 +17,7 @@ def main():
                         else:
                             quotients.append(alt / value)
                         break
-    print sum(quotients)
+    print(sum(quotients))
 
 
 if __name__ == '__main__':

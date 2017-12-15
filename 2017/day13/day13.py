@@ -12,10 +12,10 @@ def main():
         delay = 0
         snuck_through = False
         while not snuck_through:
-            print "Trying ", delay
+            print("Trying ", delay)
             delay += 1
             snuck_through = did_sneak_through(delay, adjusted_firewalls)
-        print "Delay is ", delay
+        print("Delay is ", delay)
         max_layer = max(layers)
         position = 0
         severity = 0
@@ -40,11 +40,11 @@ def main():
                         val[1] += 1
                         val[2] = True
             position += 1
-        print "Severity is", severity
+        print("Severity is", severity)
 
 
 def did_sneak_through(delay, firewalls):
-    positions = filter(lambda x: (x[0] + delay) % ((x[1] - 1) * 2) == 0, firewalls)
+    positions = [x for x in firewalls if (x[0] + delay) % ((x[1] - 1) * 2) == 0]
     return len(positions) == 0
 
 

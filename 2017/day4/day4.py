@@ -7,10 +7,10 @@ def main():
         lines = list(f)
         for line in lines:
             words = [''.join(sorted(word)) for word in line.strip().split(" ")]
-            print words
+            print(words)
             if len(set(words)) == len(words):
                 valid += 1
-    print valid
+    print(valid)
 
 if __name__ == '__main__':
     main()
