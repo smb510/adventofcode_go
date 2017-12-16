@@ -12,7 +12,7 @@ def main():
 
 
 def generate_a(prev):
-    next_val =  (prev * 16807) % 2147483647
+    next_val = (prev * 16807) % 2147483647
     while next_val % 4 != 0:
         next_val =  (next_val * 16807) % 2147483647
     return next_val
