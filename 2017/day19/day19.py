@@ -44,8 +44,7 @@ class Maze():
         right = self.grid[self.row][self.col + 1] if self.direction != Direction.LEFT else None
         up = self.grid[self.row - 1][self.col] if self.direction != Direction.DOWN else None
         down = self.grid[self.row + 1][self.col] if self.direction != Direction.UP else None
-        directions = [up, right, down, left]
-        directions = [1 if x is not None and x != ' ' else 0 for x in directions]
+        directions = [1 if x is not None and x != ' ' else 0 for x in [up, right, down, left]]
         try:
             self.direction = Direction(directions.index(1))
         except ValueError as e:
